@@ -12,3 +12,7 @@ class Opcoes:
             'Descrição(Nome)',self.listaProdutos[i].nome,
             'Fabricante',self.listaProdutos[i].fabricante,
             'Quantidade', self.listaProdutos[i].quantia)
+
+    def cadastrar_fabricante(self):
+        cod = len(self.listaFabricantes)+1
+        
