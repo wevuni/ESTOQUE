@@ -1,18 +1,32 @@
+import mysql.connector
 from info_produto import *
-class Opcoes:
+class DBAgenda:
     def __init__(self):
-        self.listaProdutos=[]
+        self.conexao = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='q1w2e3',
+        database='vendas')
+        self.meu_cursor = self.conexao.cursor()
 
-    def cadastrar_produtos(self):
-        self.listaProdutos.append(Info_produto())
+    def cadastrar_produtos(self, cod, nome, fabricante, quantia):
+        obj_produto = Info_produto(cod, nome, fabricante, quantia)
+        comando_sql = f'insert into produtos ' \
+                      f'(cod, nome, fabricante, quantia) value ' \
+                      f'("{obj_produto.cod}", "{obj_produto.nome}","{obj_produto.fabricante}","{obj_produto.quantia}")'
+        self.meu_cursor.execute(comando_sql)
+        self.conexao.commit()
 
     def listar_produtos(self):
-        for i in range(len(self.listaProdutos)):
-            print('Codigo:',self.listaProdutos[i].cod,
-            'Descrição(Nome)',self.listaProdutos[i].nome,
-            'Fabricante',self.listaProdutos[i].fabricante,
-            'Quantidade', self.listaProdutos[i].quantia)
-
-    def cadastrar_fabricante(self):
-        cod = len(self.listaFabricantes)+1
+       comando_sql = f'select * from produtos'
+       self.meu_cursor.execute(comando_sql)
+       lista = self.meu_cursor.fetchall()
+       for i in lista:
+        print (i)
+    
+    def pesquisa_produto(self, cod, nome, fabricante, quantia):
+        obj_produto = Info_produto(cod, nome, fabricante, quantia)
+        comando_sql= if f'select cod from produtos where id'== cod
+        self.meu_cursor.execute(comando_sql)
+        
         
