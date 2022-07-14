@@ -12,7 +12,7 @@ class DBAgenda:
     def cadastrar_produtos(self, cod, nome, fabricante, quantia):
         obj_produto = Info_produto(cod, nome, fabricante, quantia)
         comando_sql = f'insert into produtos ' \
-                      f'(cod, nome, fabricante, quantia) value ' \
+                      f'(id, nome, fabricante, quantia) value ' \
                       f'("{obj_produto.cod}", "{obj_produto.nome}","{obj_produto.fabricante}","{obj_produto.quantia}")'
         self.meu_cursor.execute(comando_sql)
         self.conexao.commit()
@@ -24,9 +24,21 @@ class DBAgenda:
        for i in lista:
         print (i)
     
-    def pesquisa_produto(self, cod, nome, fabricante, quantia):
-        obj_produto = Info_produto(cod, nome, fabricante, quantia)
-        comando_sql= if f'select cod from produtos where id'== cod
+    def pesquisa_produto(self, cod):
+        comando_sql=f'select * from produtos where id={cod}'
         self.meu_cursor.execute(comando_sql)
+        lista = self.meu_cursor.fetchall()
+        for i in lista:
+            print (i)
+    
+    def alterar_tabela(self, linha, valor, cod):
+        comando_sql = f'update produtos set {linha} = "{valor}" where id = {cod}'
+        self.meu_cursor.execute(comando_sql)
+        self.conexao.commit()
+    
+    
+
+    
+        
         
         
