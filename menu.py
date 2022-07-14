@@ -1,9 +1,11 @@
 from funçoes import *
+from tkinter import *
+
 class classe_menuu:
     def __init__(self):
         opcoes = DBAgenda()
         while True:
-            entrada=input('1 - Cadastrar produto\n2 - Listar produtos\n3 - Procurar  produto\n4 - Alterar produto\n0- Sair')
+            entrada=input('1 - Cadastrar produto\n2 - Listar produtos\n3 - Procurar  produto\n4 - Alterar produto\n5- Sair')
             if entrada == '1':
                 cod= input('Insira o cod')
                 nome= input('Insira o nome')
